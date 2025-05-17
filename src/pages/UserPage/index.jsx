@@ -28,16 +28,17 @@ const UserPage = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   const handlePrev = () => {
     setPage((prev) => prev - 1);
   };
   const handleNext = () => {
     setPage((prev) => prev + 1);
   };
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+
   useEffect(() => {
     getUsers(page);
   }, [page]);

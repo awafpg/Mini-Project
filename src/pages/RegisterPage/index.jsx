@@ -33,7 +33,7 @@ function RegisterPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-amber-400">
       <form
         onSubmit={handleRegister}
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
@@ -61,6 +61,14 @@ function RegisterPage() {
         >
           Register
         </button>
+        <div className="flex justify-center">
+          <p className="pt-2">
+            Sudah Punya akun?
+            <a href="/login" className="text-blue-500">
+              Login
+            </a>
+          </p>
+        </div>
         <p className={`p-1 ${collorMessage}`}>{message}</p>
       </form>
     </div>

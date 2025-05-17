@@ -1,12 +1,46 @@
-# React + Vite
+# 🧩 React User Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi ini adalah aplikasi manajemen user berbasis **React** dengan fitur login, register, protected routes, dan pengambilan data user dari API eksternal. Desain aplikasi sudah responsif dan dapat diakses dari berbagai perangkat.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ Fitur Utama
 
-## Expanding the ESLint configuration
+Fitur-fitur berikut **sesuai dengan requirement utama proyek**:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 **Register User**  
+  Form untuk registrasi user baru (penyimpanan lokal atau melalui API jika tersedia)
+
+- 🔑 **Login User**  
+  Autentikasi sederhana menggunakan token dan `localStorage`
+
+- 📋 **Menampilkan Daftar User dari API**  
+  Mengambil data dari API publik `https://reqres.in/api/users`
+
+- 🔍 **Melihat Detail Tiap User**  
+  Setiap user bisa diklik untuk melihat halaman detailnya
+
+- 📄 **Implementasi Pagination di Halaman Home**  
+  Navigasi antar halaman user (dari API yang mendukung pagination)
+
+- 🛡️ **Protected Routes untuk Halaman Tertentu**  
+  Hanya user yang login yang bisa mengakses halaman user list dan detail
+
+---
+
+## ➕ Fitur Tambahan
+
+---
+
+## 📦 Teknologi dan Library
+
+| Library             | Versi   | Fungsi                                  |
+| ------------------- | ------- | --------------------------------------- |
+| `react`             | ^19.1.0 | Library utama antarmuka pengguna        |
+| `react-dom`         | ^19.1.0 | Rendering React ke DOM                  |
+| `react-router-dom`  | ^7.6.0  | Routing dan navigasi antar halaman      |
+| `axios`             | ^1.9.0  | HTTP client untuk komunikasi dengan API |
+| `tailwindcss`       | ^4.1.7  | Styling responsif berbasis utility      |
+| `@tailwindcss/vite` | ^4.1.7  | Integrasi Tailwind dengan Vite          |
+
+---

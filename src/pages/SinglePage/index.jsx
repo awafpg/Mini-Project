@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb";
 
 const SinglePage = () => {
@@ -10,13 +10,20 @@ const SinglePage = () => {
 
   const handleUserDetail = async (id) => {
     try {
-      const response = await axios.get(`https://reqres.in/api/users/${id}`);
+      const response = await axios.get(`https://reqres.in/api/users/${id}`, {
+        headers: { "x-api-key": "reqres-free-v1" },
+      });
       setSelectedUser(response.data.data);
 
       console.log("🚀 ~ handleUserDetail ~ response:", response);
     } catch (error) {
       console.error("Failed to fetch user details:", error);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
   useEffect(() => {
     if (id) {
@@ -26,7 +33,16 @@ const SinglePage = () => {
 
   return (
     <div className="bg-amber-400 h-screen">
-      <Breadcrumb />
+      <div className="flex justify-end">
+        <Breadcrumb />
+        <div
+          onClick={() => {
+            handleLogout();
+          }}
+        >
+          Logout
+        </div>
+      </div>
       {selectedUser ? (
         <div className="p-2 text-white">
           <button className="p-10" onClick={() => navigate(-1)}>
