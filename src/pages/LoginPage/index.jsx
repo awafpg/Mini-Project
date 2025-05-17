@@ -1,21 +1,45 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [colorMessage, setColorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Logging in with", { email, password });
-    alert(`Login attempted for ${email}`);
+    try {
+      const response = await axios.post(
+        "https://reqres.in/api/login",
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            "x-api-key": "reqres-free-v1",
+          },
+        }
+      );
+      console.log("🚀 ~ handleSubmit ~ response:", response);
+
+      setMessage(`Login successful.`);
+      setColorMessage("text-green-500");
+    } catch (error) {
+      console.log(error);
+      setMessage("Login failed. Please check your credentials.");
+      setColorMessage("text-red-500");
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-[#feb924]">
       <form
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
       >
+        <p className={colorMessage}>{message}</p>
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         <input
           type="email"
@@ -39,6 +63,14 @@ const LoginPage = () => {
         >
           Login
         </button>
+        <div className="flex justify-center">
+          <p className="pt-2">
+            Belum Punya akun?
+            <a href="/register" className="text-blue-500">
+              Buat Akun
+            </a>
+          </p>
+        </div>
       </form>
     </div>
   );

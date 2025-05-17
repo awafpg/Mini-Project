@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 function RegisterPage() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [collorMessage, setCollorMessage] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("Registering", { name, email, password });
-    alert(`Registered user: ${name}`);
+    try {
+      const response = await axios.post(
+        "https://reqres.in/api/register",
+        {
+          email,
+          password,
+        },
+        {
+          headers: { "x-api-key": "reqres-free-v1" },
+        }
+      );
+      console.log("🚀 ~ handleRegister ~ response:", response.data);
+      setMessage("Register Success");
+      setCollorMessage("text-green-500");
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.error || "Register Unsuccessful";
+
+      setMessage("Register Failed : " + errorMessage);
+      setCollorMessage("text-red-500");
+    }
   };
 
   return (
@@ -18,14 +39,6 @@ function RegisterPage() {
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
       >
         <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-        />
         <input
           type="email"
           placeholder="Email"
@@ -39,7 +52,7 @@ function RegisterPage() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          // required
           className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         <button
@@ -48,6 +61,7 @@ function RegisterPage() {
         >
           Register
         </button>
+        <p className={`p-1 ${collorMessage}`}>{message}</p>
       </form>
     </div>
   );
