@@ -48,6 +48,7 @@ const UserPage = () => {
                   name={`${user.first_name} ${user.last_name}`}
                   avatar={user.avatar}
                   email={user.email}
+                  id={user.id}
                 />
               </div>
             </div>

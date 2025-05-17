@@ -1,20 +1,60 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
-const index = () => {
+const SinglePage = () => {
+  const { id } = useParams();
+  const [selectedUser, setSelectedUser] = useState(null);
+  const navigate = useNavigate();
+
+  const handleUserDetail = async (id) => {
+    try {
+      const response = await axios.get(`https://reqres.in/api/users/${id}`);
+      setSelectedUser(response.data.data);
+
+      console.log("🚀 ~ handleUserDetail ~ response:", response);
+    } catch (error) {
+      console.error("Failed to fetch user details:", error);
+    }
+  };
+  useEffect(() => {
+    if (id) {
+      handleUserDetail(id);
+    }
+  }, [id]);
+
   return (
-    <div>
-      {selectedUser && (
-        <div>
-          <h2>User Details</h2>
-          <p>
-            Name: {selectedUser.first_name} {selectedUser.last_name}
-          </p>
-          <p>Email: {selectedUser.email}</p>
-          <img src={selectedUser.avatar} alt={selectedUser.first_name} />
+    <div className="bg-amber-400 h-screen">
+      {selectedUser ? (
+        <div className="p-2 text-white">
+          <button className="p-10" onClick={() => navigate(-1)}>
+            Go Back
+          </button>
+          <div className="flex justify-center">
+            <div>
+              <h2 className="pb-7 text-3xl font-bold">User Details</h2>
+              <div className="flex justify-between">
+                <div>
+                  <img
+                    src={selectedUser.avatar}
+                    alt={selectedUser.first_name}
+                  />
+                  <p>
+                    Name: {selectedUser.first_name} {selectedUser.last_name}
+                  </p>
+                  <p>Email: {selectedUser.email}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-amber-400 h-screen flex justify-center">
+          <p className="text-4xl">Loading Data......</p>
         </div>
       )}
     </div>
   );
 };
 
-export default index;
+export default SinglePage;

@@ -1,18 +1,6 @@
-import axios from "axios";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const UserCard = ({ name, email, avatar, user }) => {
-  const [selectedUser, setSelectedUser] = useState(null);
-
-  const handleUserDetail = async (id) => {
-    try {
-      const response = await axios.get(`https://reqres.in/api/users/${id}`);
-      setSelectedUser(response.data.data); // .data.data holds the user object
-    } catch (error) {
-      console.error("Failed to fetch user details:", error);
-    }
-  };
-
+const UserCard = ({ name, email, avatar, id }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-sm">
       <div className="flex items-center space-x-4">
@@ -27,12 +15,12 @@ const UserCard = ({ name, email, avatar, user }) => {
         </div>
       </div>
       <div className="pt-4 ">
-        <button
+        <Link
           className="hover:bg-amber-400 border-1 px-2 py-1 rounded-full"
-          onClick={() => handleUserDetail(user.id)}
+          to={`/user/${id}`}
         >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
