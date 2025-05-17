@@ -45,21 +45,26 @@ const UserPage = () => {
 
   return (
     <div className="min-h-screen bg-[#feb924] text-white flex flex-col items-center py-10">
-      <div className="flex justify-end">
+      <div className="flex justify-between items-center w-full px-4 mb-6">
+        {/* Breadcrumb */}
         <Breadcrumb />
-        <div
-          onClick={() => {
-            handleLogout();
-          }}
+
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="bg-white text-[#feb924] font-semibold px-4 py-2 rounded hover:bg-gray-100 transition"
         >
           Logout
-        </div>
+        </button>
       </div>
       <h1 className="text-3xl font-bold mb-6">User List</h1>
-      <div className="w-full max-w-6xl bg-[#d38c48] shadow-md rounded-lg p-6">
+      <div className="w-full max-w-6xl bg-[#d38c48] shadow-md rounded-lg p-6 mx-auto sm:justify-start md:justify-center">
         <div className="flex flex-wrap gap-4">
           {users.map((user) => (
-            <div key={user.id} className=" py-4 flex items-center">
+            <div
+              key={user.id}
+              className="py-4 flex justify-center items-center w-full sm:w-auto md:w-auto"
+            >
               <div>
                 <UserCard
                   name={`${user.first_name} ${user.last_name}`}

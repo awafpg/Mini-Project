@@ -32,20 +32,22 @@ const SinglePage = () => {
   }, [id]);
 
   return (
-    <div className="bg-amber-400 h-screen">
-      <div className="flex justify-end">
+    <div className="bg-amber-400 h-screen text-white">
+      <div className="flex justify-between items-center w-full pt-4 px-4 mb-6">
+        {/* Breadcrumb */}
         <Breadcrumb />
-        <div
-          onClick={() => {
-            handleLogout();
-          }}
+
+        {/* Logout Button */}
+        <button
+          onClick={handleLogout}
+          className="bg-white text-[#feb924] font-semibold px-4 py-2 rounded-2xl hover:bg-gray-100 transition"
         >
           Logout
-        </div>
+        </button>
       </div>
       {selectedUser ? (
-        <div className="p-2 text-white">
-          <button className="p-10" onClick={() => navigate(-1)}>
+        <div className=" text-white">
+          <button className="pl-4" onClick={() => navigate(-1)}>
             Go Back
           </button>
           <div className="flex justify-center">
