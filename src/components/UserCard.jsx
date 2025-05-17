@@ -16,7 +16,7 @@ const UserCard = ({ name, email, avatar, id }) => {
       </div>
       <div className="pt-4 ">
         <Link
-          className="hover:bg-amber-400 border-1 px-2 py-1 rounded-full"
+          className="hover:bg-amber-400 hover:text-white border-1 border-amber-400 text-amber-400 px-2 py-1 rounded-full"
           to={`/user/${id}`}
         >
           View Details

@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserCard from "../../components/UserCard";
+import { useNavigate } from "react-router-dom";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const UserPage = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const navigate = useNavigate();
   const API_URL = "https://reqres.in/api/users";
   const API_KEY = "reqres-free-v1";
 
@@ -31,13 +34,26 @@ const UserPage = () => {
   const handleNext = () => {
     setPage((prev) => prev + 1);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   useEffect(() => {
     getUsers(page);
   }, [page]);
 
   return (
-    <div className="min-h-screen bg-[#feb924] flex flex-col items-center py-10">
+    <div className="min-h-screen bg-[#feb924] text-white flex flex-col items-center py-10">
+      <div className="flex justify-end">
+        <Breadcrumb />
+        <div
+          onClick={() => {
+            handleLogout();
+          }}
+        >
+          Logout
+        </div>
+      </div>
       <h1 className="text-3xl font-bold mb-6">User List</h1>
       <div className="w-full max-w-6xl bg-[#d38c48] shadow-md rounded-lg p-6">
         <div className="flex flex-wrap gap-4">

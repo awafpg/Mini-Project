@@ -1,3 +1,5 @@
+import Breadcrumb from "../../components/Breadcrumb";
+
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#d38c48] flex flex-col">
@@ -13,6 +15,7 @@ const HomePage = () => {
           </a>
         </nav>
       </header>
+      <section></section>
 
       <section className="flex-1 flex flex-col items-center justify-center text-center px-4">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#eae3dd]">

@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [colorMessage, setColorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +25,9 @@ const LoginPage = () => {
         }
       );
       console.log("🚀 ~ handleSubmit ~ response:", response);
-
+      // In your login logic
+      localStorage.setItem("token", response.data.token);
+      navigate("/user");
       setMessage(`Login successful.`);
       setColorMessage("text-green-500");
     } catch (error) {

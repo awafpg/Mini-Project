@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import Breadcrumb from "../../components/Breadcrumb";
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -25,6 +26,7 @@ const SinglePage = () => {
 
   return (
     <div className="bg-amber-400 h-screen">
+      <Breadcrumb />
       {selectedUser ? (
         <div className="p-2 text-white">
           <button className="p-10" onClick={() => navigate(-1)}>
