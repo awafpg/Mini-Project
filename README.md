@@ -1,6 +1,6 @@
 # 🧩 React User Management App
 
-Aplikasi ini adalah aplikasi manajemen user berbasis **React** dengan fitur login, register, protected routes, dan pengambilan data user dari API eksternal. Desain aplikasi sudah responsif dan dapat diakses dari berbagai perangkat.
+Aplikasi ini adalah aplikasi manajemen user berbasis **React** dengan fitur login, register, protected routes, dan pengambilan data user dari API eksternal.
 
 ---
 
