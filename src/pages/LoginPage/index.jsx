@@ -28,7 +28,8 @@ const LoginPage = () => {
       setColorMessage("text-green-500");
     } catch (error) {
       console.log(error);
-      setMessage("Login failed. Please check your credentials.");
+      const errorMessage = error?.response?.data.error;
+      setMessage("Login failed. " + errorMessage);
       setColorMessage("text-red-500");
     }
   };
@@ -39,7 +40,9 @@ const LoginPage = () => {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm"
       >
-        <p className={colorMessage}>{message}</p>
+        <div className="flex justify-center">
+          <p className={colorMessage}>{message}</p>
+        </div>
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         <input
           type="email"
@@ -54,7 +57,7 @@ const LoginPage = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          // required
           className="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
